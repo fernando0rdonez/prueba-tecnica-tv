@@ -1,18 +1,14 @@
-import express from 'express'
-import { NotFoundError } from './errors/not-found-error'
-import { errorHandler } from './middleware/error-handler'
-import { signup } from './routes/signup'
+import mongoose from 'mongoose'
+import { app } from './app'
 
-const app = express()
-app.use(express.json())
+async function start () {
+  mongoose.connect('mongodb+srv://practicamongodb:8ZXeLZvkrmI8cKOk@cluster0.7jlkm.mongodb.net/directiv').then(() => {
+    console.log('conected to DB')
+  })
 
-app.use(signup)
+  app.listen(3000, () => {
+    console.log('listen in port 3000')
+  })
+}
 
-app.all('*', () => {
-  throw new NotFoundError()
-})
-app.use(errorHandler)
-
-app.listen(3000, () => {
-  console.log('Server avaliable on port 3000')
-})
+start()
