@@ -8,6 +8,6 @@ abstract statusCode: number;
 
 abstract serializateError(): {
 message: string;
-fields: string[];
-};
+fields?: string;
+}[];
 }

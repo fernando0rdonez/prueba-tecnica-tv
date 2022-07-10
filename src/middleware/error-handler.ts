@@ -3,13 +3,14 @@ import { CustomError } from '../errors/custom-error'
 
 export const errorHandler = (
   err: Error,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   if (err instanceof CustomError) {
     return res.status(err.statusCode).json(err.serializateError())
   }
+  console.log('no deberia pasa')
 
   res.status(400).send({
     message: err.message,
