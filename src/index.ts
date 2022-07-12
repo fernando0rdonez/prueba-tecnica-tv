@@ -6,7 +6,7 @@ async function start () {
     console.log('conected to DB')
   })
 
-  app.listen(3000, () => {
+  app.listen(3001, () => {
     console.log('listen in port 3000')
   })
 }

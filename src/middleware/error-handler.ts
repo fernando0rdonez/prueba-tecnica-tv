@@ -10,7 +10,6 @@ export const errorHandler = (
   if (err instanceof CustomError) {
     return res.status(err.statusCode).json(err.serializateError())
   }
-  console.log('no deberia pasa')
 
   res.status(400).send({
     message: err.message,

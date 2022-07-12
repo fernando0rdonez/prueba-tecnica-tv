@@ -1,17 +1,7 @@
 import mongoose from 'mongoose'
 import { HashPassword } from '../services/hashPassword'
+import { IUser } from '../types/types'
 
-interface IUser {
-  name: string
-    email: string,
-    password: string,
-    phones: [
-        {
-            number: string,
-            ddd: string
-        }
-    ]
-}
 const userSchema = new mongoose.Schema<IUser>(
   {
     name: {
@@ -26,6 +16,14 @@ const userSchema = new mongoose.Schema<IUser>(
       type: String,
       require: true
     },
+    last_login: {
+      type: Date,
+      require: false
+    },
+    token: {
+      type: String,
+      require: false
+    },
     phones: [
       {
         number: { type: String },
@@ -37,6 +35,7 @@ const userSchema = new mongoose.Schema<IUser>(
     toJSON: {
       transform (_doc, ret, _options) {
         ret.id = ret._id
+        delete ret.password
         delete ret._id
         delete ret.__v
       }
