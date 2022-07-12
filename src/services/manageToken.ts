@@ -4,7 +4,7 @@ import { IUser, IUserDecryt } from '../types/types'
 
 export class ManageToken {
   static sign (payload: IUser):string {
-    const token = jwt.sign({ data: payload }, process.env.SECRET_KEY || 'abcd', { expiresIn: '30' })
+    const token = jwt.sign({ data: payload }, process.env.SECRET_KEY || 'abcd', { expiresIn: '1h' })
     return token
   }
 
